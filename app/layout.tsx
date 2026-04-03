@@ -11,7 +11,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Cycle App",
+  title: "ShopList",
   description: "Shopping cycle manager",
 };
 
@@ -26,7 +26,7 @@ export default function RootLayout({
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
       </head>
       <body className="bg-background text-on-surface font-body antialiased min-h-screen">
-        <Header title="Shopping List" />
+        <Header />
         {children}
         <Footer />
       </body>
