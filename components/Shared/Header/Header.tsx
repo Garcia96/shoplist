@@ -1,19 +1,33 @@
+'use client';
+import { usePathname } from "next/navigation";
 import WaterDrop from "@mui/icons-material/WaterDrop";
-import Help from "@mui/icons-material/Help";
+import Waves from "@mui/icons-material/Waves";
+import Autorenew from "@mui/icons-material/Autorenew";
+import Settings from "@mui/icons-material/Settings";
 
-export default function Header({ title }: { title: string }) {
+const routes = [
+  { name: "Shopping List", href: "/", icon: <WaterDrop /> },
+  { name: "Recurring Items", href: "/recurring", icon: <Waves /> },
+  { name: "Your Cycle Period", href: "/cycle", icon: <Autorenew /> },
+];
+
+export default function Header() {
+  const pathname = usePathname();
+
   return (
     <header className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl shadow-sm">
       <div className="flex items-center justify-between px-6 h-16">
         <div className="flex items-center gap-3">
-          <span className="material-symbols-outlined text-primary">
-            <WaterDrop />
+          <span className="material-symbols-outlined text-blue">
+            {routes.find((route) => route.href === pathname)?.icon || <WaterDrop />}
           </span>
-          <h1 className="font-bold tracking-tight">{title}</h1>
+          <h1 className="font-bold tracking-tight">
+            {routes.find((route) => route.href === pathname)?.name || "Shopping List"}
+          </h1>
         </div>
-        <button className="p-2 rounded-full hover:bg-primary/5">
+        <button className="p-2 rounded-full hover:bg-blue/5">
           <span className="material-symbols-outlined text-zinc-500">
-            <Help />
+            <Settings />
           </span>
         </button>
       </div>
