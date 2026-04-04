@@ -1,13 +1,13 @@
 'use client';
 import { usePathname } from "next/navigation";
 import WaterDrop from "@mui/icons-material/WaterDrop";
-import Waves from "@mui/icons-material/Waves";
+import HistoryToggleOff from "@mui/icons-material/HistoryToggleOff";
 import Autorenew from "@mui/icons-material/Autorenew";
 import Settings from "@mui/icons-material/Settings";
 
 const routes = [
   { name: "Shopping List", href: "/", icon: <WaterDrop /> },
-  { name: "Recurring Items", href: "/recurring", icon: <Waves /> },
+  { name: "Recurring Items", href: "/recurring", icon: <HistoryToggleOff /> },
   { name: "Your Cycle Period", href: "/cycle", icon: <Autorenew /> },
 ];
 

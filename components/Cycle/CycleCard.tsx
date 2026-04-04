@@ -1,4 +1,11 @@
+'use client';
+
+import { useCycleStore } from "@/hooks/useCycleStore";
+
 export function CycleCard() {
+  const cycle = useCycleStore((state) => state.value);
+
+  
   return (
     <section className="relative rounded-xl bg-surface-container-low p-8 text-center bg-gray-100">
       <div className="flex justify-center">
@@ -10,7 +17,11 @@ export function CycleCard() {
           </div>
         </div>
       </div>
-      <h2 className="mt-6 text-2xl font-extrabold">Weekly Cycle Active</h2>
+      <h2 className="mt-6 text-xl font-bold">
+        {cycle?.duration?.label
+          ? `${cycle.duration.label} Cycle Active`
+          : "No Active Cycle"}
+      </h2>
       <p className="text-sm text-gray-500">Ends Friday</p>
     </section>
   );

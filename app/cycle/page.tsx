@@ -18,7 +18,7 @@ export default function CyclePage() {
         <button className="w-full py-5 rounded-full bg-blue text-white font-bold">
           Start New Cycle
         </button>
-        <button className="w-full py-4 rounded-full bg-gray-200 font-bold">
+        <button className="w-full py-4 rounded-full bg-amber text-white font-bold">
           Reset Current Cycle
         </button>
       </section>
