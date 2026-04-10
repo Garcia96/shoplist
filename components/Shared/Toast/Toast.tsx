@@ -10,7 +10,7 @@ export function Toast() {
   if (!toast.visible) return null;
 
   return (
-    <div className="fixed top-18 right-2 bg-slate text-white pl-2 pr-1 py-2 rounded shadow-lg">
+    <div className="fixed top-18 right-2 left-2 bg-slate text-white pl-3 px-2 py-6 rounded shadow-xl/30">
       <div className="flex justify-between items-center">
         <span>{toast.message}</span>
         <Close onClick={hideToast} className="ml-2" />

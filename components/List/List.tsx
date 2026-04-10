@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useAllItemsStore, useItemsFixedStore, useItemsStore } from "@/hooks/useItemsStore";
-import ListItem from "./ListItem";
 import { useToastStore } from "@/hooks/toastStore";
+import ListItem from "./ListItem";
 
 export default function List({ isFixed }: { isFixed: boolean }) {
   const [inputValue, setInputValue] = useState("");
@@ -21,7 +21,7 @@ export default function List({ isFixed }: { isFixed: boolean }) {
       (item) => item.name.toLowerCase() === name.toLowerCase(),
     );
     if (item) {
-      showToast("Este item ya está en la lista", 3000);
+      showToast("The item is already on the list", 3000);
       return;
     }
 

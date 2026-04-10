@@ -4,12 +4,11 @@ export type Item = {
   isChecked?: boolean;
 };
 
-type CycleDurationLabel = "Weekly" | "Bi-weekly" | "Monthly" | "Custom";
-
 export type CycleDuration = {
-  label: CycleDurationLabel;
+  label: string;
   desc: string;
-}
+  amount: number;
+};
 
 export type Cycle = {
   duration: CycleDuration;
@@ -18,9 +17,20 @@ export type Cycle = {
   checked: boolean;
 };
 
+export type Settings = {
+  firstTime: boolean;
+  theme: string;
+}
+
 type SetValue<T> = (value: T | ((prev: T) => T)) => void;
 
 export type Store<T> = {
   value: T;
   setValue: SetValue<T>;
+};
+
+export const initialCycleDuration: CycleDuration = {
+  desc: "",
+  amount: 1,
+  label: "",
 };
