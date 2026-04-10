@@ -26,7 +26,10 @@ export function Footer() {
     <footer className="fixed bottom-0 w-full bg-white/80 backdrop-blur-xl ">
       <div className="flex justify-around items-center h-20">
         {navItems.map((item) => {
-          const isActive = pathname === item.href;
+          const isActive =
+            item.href === "/"
+              ? pathname === "/"
+              : pathname.startsWith(item.href);
           return (
             <Link
               key={item.href}
