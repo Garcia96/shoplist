@@ -8,7 +8,7 @@ export function CycleCard() {
   const today = new Date();
   const diffTime = cycle.endDate?.getTime() - today.getTime();
   const daysLeft = Math.max(Math.ceil(diffTime / (1000 * 60 * 60 * 24)), 0);
-  const endMonth = cycle.endDate.toLocaleDateString("en-US", {
+  const endMonth = cycle.endDate?.toLocaleDateString("en-US", {
     month: "long"
   })
 
@@ -28,7 +28,7 @@ export function CycleCard() {
           ? `${cycle.duration.label} Cycle Active`
           : "No Active Cycle"}
       </h2>
-      <p className="text-sm text-gray-500">{endMonth ? 'Ends on ' + endMonth + ' ' +  cycle.endDate.getDate(): ''}</p>
+      <p className="text-sm text-gray-500">{endMonth ? 'Ends on ' + endMonth + ' ' +  cycle.endDate?.getDate(): ''}</p>
     </section>
   );
 }
