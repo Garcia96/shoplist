@@ -7,7 +7,9 @@ import {
   useItemsFixedStore,
   useItemsStore,
 } from "@/hooks/useItemsStore";
+import Info from "@mui/icons-material/Info";
 import { initialCycleDuration } from "@/types/types";
+import { useSettingsStore } from "@/hooks/settingsStore";
 
 export function NewCycle() {
   const router = useRouter();
@@ -20,6 +22,8 @@ export function NewCycle() {
   const cycle = useCycleStore((state) => state.value);
   const setCycle = useCycleStore((state) => state.setValue);
   const showToast = useToastStore((s) => s.showToast);
+  const settings = useSettingsStore((state) => state.value);
+  const setSettings = useSettingsStore((state) => state.setValue);
 
   const clearFixedItems = () => {
     setItemsFixed((prev) =>
@@ -66,25 +70,46 @@ export function NewCycle() {
       endDate: endDate,
     });
     setCycleDuration(initialCycleDuration);
+
+    if (settings.firstTime) {
+      setSettings({
+        ...settings,
+        firstTime: false
+      })
+    }
     router.push("/");
   };
 
   return (
-    <section>
-      <div className="flex flex-col items-center mt-8">
-        <button
-          onClick={handleConfirm}
-          className="w-3xs py-3 rounded-xl bg-blue text-white font-bold text-center"
-        >
-          Confirm & Start New Cycle
-        </button>
-        <button
-          onClick={() => router.back()}
-          className="w-3xs py-2 mt-2 rounded-xl text-black font-bold text-center"
-        >
-          Cancel
-        </button>
-      </div>
-    </section>
+    <>
+      {!settings.firstTime && (
+        <section className="relative mt-4 rounded-2xl bg-surface-container-low p-8 text-center bg-blue-50 border-l-5 border-blue-500 my-card">
+          <div className="flex flex-row gap-3">
+            <Info className="text-blue" />
+            <p className="text-left font-light">
+              Starting a new cycle will reset your current progress and
+              automatically refresh your recurring pantry essentials for the
+              upcoming cycle.
+            </p>
+          </div>
+        </section>
+      )}
+      <section>
+        <div className="flex flex-col items-center mt-8">
+          <button
+            onClick={handleConfirm}
+            className="w-3xs py-3 rounded-xl bg-blue text-white font-bold text-center"
+          >
+            Start New Cycle
+          </button>
+          <button
+            onClick={() => router.back()}
+            className="w-3xs py-2 mt-2 rounded-xl font-bold text-center cancel"
+          >
+            Cancel
+          </button>
+        </div>
+      </section>
+    </>
   );
 }

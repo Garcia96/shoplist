@@ -40,25 +40,25 @@ export default function ListItem(props: Item) {
     <div
       onClick={handleSelect}
       className={clsx(
-        "p-4 rounded-xl shadow flex justify-between items-center cursor-pointer",
+        "p-4 rounded-xl shadow flex justify-between items-center cursor-pointer my-card",
         isChecked ? "bg-blue-50" : "bg-white",
       )}
     >
-      <div className="flex items-center space-x-3">
+      <div className="flex items-center space-x-3 wrap-anywhere">
         <input
           type="checkbox"
           checked={isChecked}
           readOnly
-          className="w-5 h-5"
+          className="w-5 h-5 shrink-0"
         />
-        <span
+        <p
           className={clsx(
             "text-lg font-medium",
             isChecked ? "text-blue line-through" : "",
           )}
         >
           {props.name}
-        </span>
+        </p>
       </div>
 
       {props.isFixed && (

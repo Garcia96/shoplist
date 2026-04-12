@@ -1,19 +1,7 @@
 "use client";
 
 import { create } from "zustand";
-
-type Toast = {
-  message: string;
-  visible: boolean;
-};
-
-type ToastStore = {
-  toast: Toast;
-  timeoutId: NodeJS.Timeout | null;
-
-  showToast: (message: string, duration?: number) => void;
-  hideToast: () => void;
-};
+import type { ToastStore } from "@/types/types";
 
 export const useToastStore = create<ToastStore>((set, get) => ({
   toast: { message: "", visible: false },
