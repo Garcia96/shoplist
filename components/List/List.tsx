@@ -1,8 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { useAllItemsStore, useItemsFixedStore, useItemsStore } from "@/hooks/useItemsStore";
+import {
+  useAllItemsStore,
+  useItemsFixedStore,
+  useItemsStore,
+} from "@/hooks/useItemsStore";
 import { useToastStore } from "@/hooks/toastStore";
+import { useSettingsStore } from "@/hooks/settingsStore";
+import { useDialogStore } from "@/hooks/dialogStore";
 import ListItem from "./ListItem";
 
 export default function List({ isFixed }: { isFixed: boolean }) {
@@ -13,8 +19,19 @@ export default function List({ isFixed }: { isFixed: boolean }) {
   const setFixedItems = useItemsFixedStore((state) => state.setValue);
   const fixedItems = useItemsFixedStore((state) => state.value);
   const showToast = useToastStore((s) => s.showToast);
+  const settings = useSettingsStore((state) => state.value);
+  const showDialog = useDialogStore((state) => state.showDialog);
 
   function addItem(name: string) {
+    if (settings.firstTime) {
+      showDialog(
+        <p>You haven’t set up a cycle yet. Create one now to get started.</p>,
+        "/cycle/start",
+        "Set Up Your Cycle",
+      );
+      return;
+    }
+
     if (!name.trim()) return;
 
     const item = items.find(
@@ -47,7 +64,8 @@ export default function List({ isFixed }: { isFixed: boolean }) {
           }}
           placeholder="Add item..."
           id="search-list"
-          className="w-full p-4 pr-14 rounded-xl bg-gray-100 focus:outline-none text-lg font-medium"
+          autoComplete="off"
+          className="w-full p-4 pr-14 rounded-xl focus:outline-none text-lg font-medium"
         />
 
         <button
@@ -60,15 +78,14 @@ export default function List({ isFixed }: { isFixed: boolean }) {
 
       <div className="space-y-3">
         {isFixed &&
-          fixedItems
-            .map((item) => (
-              <ListItem
-                key={item.name}
-                name={item.name}
-                isFixed={item.isFixed}
-                isChecked={item.isChecked}
-              />
-            ))}
+          fixedItems.map((item) => (
+            <ListItem
+              key={item.name}
+              name={item.name}
+              isFixed={item.isFixed}
+              isChecked={item.isChecked}
+            />
+          ))}
         {!isFixed &&
           items
             .sort((a, b) => Number(b.isFixed) - Number(a.isFixed))

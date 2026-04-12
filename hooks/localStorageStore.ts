@@ -4,7 +4,6 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { Store } from "@/types/types";
 
-
 export function localStorageStore<T>(key: string, initialValue: T) {
   return create<Store<T>>()(
     persist(
@@ -20,6 +19,11 @@ export function localStorageStore<T>(key: string, initialValue: T) {
       }),
       {
         name: key,
+        onRehydrateStorage: () => (state) => {
+          if (!localStorage.getItem(key)) {
+            state?.setValue(initialValue);
+          }
+        },
       },
     ),
   );

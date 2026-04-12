@@ -1,7 +1,7 @@
 import { localStorageStore } from "./localStorageStore";
-import { Settings } from "@/types/types";
+import { Settings, initialSettings } from "@/types/types";
 
 export const useSettingsStore = localStorageStore<Settings>(
   "settings",
-  {} as Settings,
+  initialSettings,
 );

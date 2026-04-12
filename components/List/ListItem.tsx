@@ -40,7 +40,7 @@ export default function ListItem(props: Item) {
     <div
       onClick={handleSelect}
       className={clsx(
-        "p-4 rounded-xl shadow flex justify-between items-center cursor-pointer",
+        "p-4 rounded-xl shadow flex justify-between items-center cursor-pointer my-card",
         isChecked ? "bg-blue-50" : "bg-white",
       )}
     >

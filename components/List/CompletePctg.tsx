@@ -15,7 +15,7 @@ export default function CompletePctg() {
   }
 
   return (
-    <div className="flex flex-col justify-between rounded-xl bg-surface-container-low p-4 my-4 text-center bg-gray-100">
+    <div className="flex flex-col justify-between rounded-xl bg-surface-container-low p-4 my-4 text-center bg-gray-100 my-card">
       <div className="flex justify-between items-center w-full">
         <span className="font-semibold text-gray text-md">COMPLETION</span>
         {percentage == 0 && (

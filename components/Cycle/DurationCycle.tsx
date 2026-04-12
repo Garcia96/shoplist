@@ -49,8 +49,8 @@ export function DurationSelector() {
             onClick={() => handleSelect(opt.label)}
             className={`p-5 rounded-xl text-left transition ${
               opt.label === cycleDuration?.label
-                ? "bg-blue text-white"
-                : "bg-white hover:bg-gray-100"
+                ? "bg-blue text-white "
+                : "bg-white hover:bg-gray-100 my-card"
             }`}
           >
             <span className="block font-bold">{opt.label}</span>
@@ -60,14 +60,14 @@ export function DurationSelector() {
       </div>
 
       {cycleDuration?.label === "Custom" && (
-        <div className="mt-8">
+        <div className="mt-8 my">
           <p className="text-sm text-gray-500">
             Select the number of days for your custom cycle:
           </p>
-          <div className="flex items-center justify-around bg-gray-100 rounded-xl p-4 w-full max-w-sm">
+          <div className="flex items-center justify-around bg-gray-100 rounded-xl p-4 w-full max-w-sm my-card">
             <button
               onClick={decrement}
-              className="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center text-xl font-bold"
+              className="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center text-xl font-bold dark:text-black"
             >
               -
             </button>

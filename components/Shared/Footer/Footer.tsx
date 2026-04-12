@@ -23,7 +23,7 @@ export function Footer() {
   const pathname = usePathname();
 
   return (
-    <footer className="fixed bottom-0 w-full bg-white/80 backdrop-blur-xl ">
+    <footer className="fixed bottom-0 w-full bg-shared backdrop-blur-xl ">
       <div className="flex justify-around items-center h-20">
         {navItems.map((item) => {
           const isActive =

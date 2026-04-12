@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type Item = {
   name: string;
   isFixed: boolean;
@@ -19,7 +21,34 @@ export type Cycle = {
 
 export type Settings = {
   firstTime: boolean;
-  theme: string;
+  theme: string | undefined;
+}
+
+type Toast = {
+  message: string;
+  visible: boolean;
+};
+
+export type ToastStore = {
+  toast: Toast;
+  timeoutId: NodeJS.Timeout | null;
+
+  showToast: (message: string, duration?: number) => void;
+  hideToast: () => void;
+};
+
+type Dialog = {
+  content: ReactNode;
+  link?: string;
+  title: string;
+  visible: boolean;
+}
+
+export type DialogStore = {
+  dialog: Dialog;
+  
+  showDialog: (content: ReactNode, link: string, title: string) => void;
+  hideDialog: () => void;
 }
 
 type SetValue<T> = (value: T | ((prev: T) => T)) => void;
@@ -33,4 +62,9 @@ export const initialCycleDuration: CycleDuration = {
   desc: "",
   amount: 1,
   label: "",
+};
+
+export const initialSettings: Settings = {
+  firstTime: true,
+  theme: "light",
 };
