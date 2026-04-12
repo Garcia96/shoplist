@@ -15,7 +15,7 @@ export default function ListFixedItem(props: Item) {
   }
 
   return (
-    <div className="p-4 rounded-xl shadow flex justify-between items-center cursor-pointer bg-white my-card">
+    <div className="p-4 rounded-xl shadow flex justify-between items-center cursor-pointer my-card">
       <div className="flex items-center space-x-3">
         <span className="text-lg font-medium">{props.name}</span>
       </div>

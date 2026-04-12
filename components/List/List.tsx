@@ -65,7 +65,7 @@ export default function List({ isFixed }: { isFixed: boolean }) {
           placeholder="Add item..."
           id="search-list"
           autoComplete="off"
-          className="w-full p-4 pr-14 rounded-xl focus:outline-none text-lg font-medium"
+          className="w-full p-4 pr-14 rounded-xl text-lg font-medium shadow-lg/20 border border-gray-300"
         />
 
         <button
