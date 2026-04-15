@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8f9fa;
+  --foreground: #171717;
+  --primary: 69 118 198;
+  --secondary: 103 119 152;
+  --tertiary: 162 96 0;
+  --neutral: 117 119 125;
+  --surface: #f3f4f6;
+  --shared: #f8f8f8;
+}
+
+.dark {
+  --background: #0f172a;
+  --foreground: #e5e7eb;
+  --primary: 69 118 198;
+  --secondary: 148 163 184;
+  --tertiary: 251 191 36;
+  --neutral: 156 163 175;
+  --surface: #1e293b;
+  --shared: #0c1423;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-blue: rgb(var(--primary));
+  --color-slate: rgb(var(--secondary));
+  --color-amber: rgb(var(--tertiary));
+  --color-gray: rgb(var(--neutral));
+}
+
+.my-card {
+  background-color: var(--surface);
+}
+
+input {
+  background-color: var(--surface);
+}
+
+.cancel {
+  background-color: var(--surface);
+}
+
+.bg-shared {
+  background-color: var(--shared);
+}
+
+.dialog {
+  background-color: var(--surface);
+}
+
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  10% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  90% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+}
+
+.animate-fade-in-out {
+  animation: fade-in-out 2s ease forwards;
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-item-in {
+  animation: slideFadeIn 0.4s ease-out;
+}

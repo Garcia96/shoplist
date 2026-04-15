@@ -1,0 +1,17 @@
+{
+  "common": {
+    "addItem": "Add item...",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "header": "",
+  "footer": {
+    "list": "Lista",
+    "recurring": "Fijos",
+    "cycle": "Ciclo"
+  },
+  "mainPage": {
+    "title": "Lista de compra",
+    "completion": "PROGRESO"
+  }
+}
