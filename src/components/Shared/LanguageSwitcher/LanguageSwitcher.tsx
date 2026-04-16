@@ -1,21 +1,23 @@
 "use client";
 
+import { useTransition } from "react";
 import { useLocale } from "next-intl";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname } from "@/src/i18n/navigation";
 
 export function LanguageSwitcher() {
+  const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const pathname = usePathname();
   const currentLocale = useLocale();
 
   function changeLanguage(locale: string) {
-    const newPathname = pathname.replace(`/${currentLocale}`, `/${locale}`);
-
-    router.push(newPathname);
+    startTransition(() => {
+      router.replace(pathname, { locale });
+    });
   }
 
   return (
-    <div className="flex">
+    <div className={isPending ? "opacity-50 flex" : "flex"}>
       {currentLocale === "en" && (
         <button onClick={() => changeLanguage("es")}>ES</button>
       )}

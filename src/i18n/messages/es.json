@@ -5,6 +5,10 @@
     "cancel": "Cancel",
     "days": "DIAS"
   },
+  "toast": {
+    "itemAlready": "Este item ya se encuentra en la lista.",
+    "selectCycle": "Selecciona una duración de ciclo por favor!"
+  },
   "cycles": {
     "weekly": "Semanal",
     "biweekly": "Quincenal",
@@ -33,6 +37,7 @@
   },
   "cyclePage": {
     "cycleCardTitle": "Ciclo {cycle} Activo",
+    "noActive": "No Hay Ciclo Activo",
     "ends": "Finaliza el {date, date, shortDayMonth}",
     "button": "Comienza un Nuevo Ciclo",
     "days": "{count, plural, one {Dia para Comprar} other {Dias para Comprar}}"

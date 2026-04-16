@@ -41,7 +41,7 @@ export function NewCycle() {
 
   const handleConfirm = () => {
     if (!cycleDuration.amount) {
-      showToast("Select a cycle duration please!", 4000);
+      showToast("selectCycle", 4000);
       return;
     }
 

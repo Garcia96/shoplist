@@ -1,8 +1,8 @@
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 
 export default function ActionButtons() {
-  const t = useTranslations('cyclePage');
+  const t = useTranslations("cyclePage");
   return (
     <section className="flex flex-col items-center mt-8">
       <Link

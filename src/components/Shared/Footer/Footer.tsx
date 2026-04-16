@@ -4,7 +4,7 @@ import { usePathname } from "@/src/i18n/navigation";
 import Autorenew from "@mui/icons-material/Autorenew";
 import ShoppingBasket from "@mui/icons-material/ShoppingBasket";
 import HistoryToggleOff from "@mui/icons-material/HistoryToggleOff";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
 

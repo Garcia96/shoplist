@@ -43,7 +43,7 @@ export default function List({ isFixed }: { isFixed: boolean }) {
       (item) => item.name.toLowerCase() === name.toLowerCase(),
     );
     if (item) {
-      showToast("The item is already on the list", 3000);
+      showToast("itemAlready", 3000);
       return;
     }
 

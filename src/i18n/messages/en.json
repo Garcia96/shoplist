@@ -5,6 +5,10 @@
     "cancel": "Cancel",
     "days": "DAYS"
   },
+  "toast": {
+    "itemAlready": "The item is already on the list",
+    "selectCycle": "Select a cycle duration please!"
+  },
   "cycles": {
     "weekly": "Weekly",
     "biweekly": "Bi-weekly",
@@ -33,6 +37,7 @@
   },
   "cyclePage": {
     "cycleCardTitle": "{cycle} Cyle Active",
+    "noActive": "No Active Cycle",
     "ends": "Ends on {date, date, shortDayMonth}",
     "button": "Start New Cycle",
     "days": "{count, plural, one {DAY LEFT} other {DAYS LEFT}}"

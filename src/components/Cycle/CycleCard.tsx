@@ -30,7 +30,7 @@ export function CycleCard() {
           ? t("cyclePage.cycleCardTitle", {
               cycle: t(`cycles.${cycle.duration.label.toLocaleLowerCase()}`),
             })
-          : "No Active Cycle"}
+          : t("cyclePage.noActive")}
       </h2>
       <p className="text-sm text-gray-500">
         {cycle?.endDate
