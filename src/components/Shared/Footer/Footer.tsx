@@ -1,11 +1,12 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/src/i18n/navigation";
 import Autorenew from "@mui/icons-material/Autorenew";
 import ShoppingBasket from "@mui/icons-material/ShoppingBasket";
 import HistoryToggleOff from "@mui/icons-material/HistoryToggleOff";
 import Link from "next/link";
 import clsx from "clsx";
+import { useTranslations } from "next-intl";
 
 type NavItem = {
   href: string;
@@ -14,18 +15,24 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-  { href: "/", label: "List", icon: ShoppingBasket },
-  { href: "/recurring", label: "Recurring", icon: HistoryToggleOff },
-  { href: "/cycle", label: "Cycle", icon: Autorenew },
+  { href: "/", label: "list", icon: ShoppingBasket },
+  { href: "/recurring", label: "recurring", icon: HistoryToggleOff },
+  { href: "/cycle", label: "cycle", icon: Autorenew },
 ];
 
 export function Footer() {
   const pathname = usePathname();
+  const t = useTranslations('footer');
+
+  const items = navItems.map(item => ({
+    ...item,
+    label: t(item.label)
+  }))
 
   return (
     <footer className="fixed bottom-0 w-full bg-shared backdrop-blur-xl ">
       <div className="flex justify-around items-center h-20">
-        {navItems.map((item) => {
+        {items.map((item) => {
           const isActive =
             item.href === "/"
               ? pathname === "/"

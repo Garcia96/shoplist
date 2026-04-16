@@ -1,17 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/src/i18n/navigation";
 import clsx from "clsx";
 import { useAllItemsStore, useItemsStore } from "@/src/hooks/useItemsStore";
 import type { Item } from "@/src/types/types";
 import ListFixedItem from "./ListFixedItem";
+import { useTranslations } from "next-intl";
 
 export default function ListItem(props: Item) {
   const pathname = usePathname();
   const setItems = useItemsStore((state) => state.setValue);
   const setAllItems = useAllItemsStore((state) => state.setValue);
   const [isChecked, setIsChecked] = useState(props.isChecked || false);
+  const t = useTranslations("mainPage");
 
   function handleSelect() {
     setIsChecked((prev) => !prev);
@@ -41,9 +43,7 @@ export default function ListItem(props: Item) {
         isChecked ? "bg-blue-50" : "bg-white",
       )}
     >
-      <div
-        className="transition-transform duration-200 flex items-center space-x-3 wrap-anywhere"
-      >
+      <div className="transition-transform duration-200 flex items-center space-x-3 wrap-anywhere">
         <input
           type="checkbox"
           checked={isChecked}
@@ -69,7 +69,7 @@ export default function ListItem(props: Item) {
             isChecked ? "bg-white" : "bg-blue-50",
           )}
         >
-          <span className="font-bold text-xs text-blue">FIXED</span>
+          <span className="font-bold text-xs text-blue">{t("fixedItem")}</span>
         </div>
       )}
     </div>

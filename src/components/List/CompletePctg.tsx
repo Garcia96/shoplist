@@ -1,9 +1,11 @@
 "use client";
 
 import { useAllItemsStore } from "@/src/hooks/useItemsStore";
+import { useTranslations } from "next-intl";
 
 export default function CompletePctg() {
   const items = useAllItemsStore((state) => state.value);
+  const t = useTranslations('mainPage');
   let percentage = 0;
 
   const checkedItems = items.filter((item) => item.isChecked).length;
@@ -15,9 +17,9 @@ export default function CompletePctg() {
   }
 
   return (
-    <div className="flex flex-col justify-between rounded-xl bg-surface-container-low p-4 my-4 text-center bg-gray-100 my-card">
+    <div className="flex flex-col justify-between rounded-xl bg-surface-container-low p-4 my-4 text-center bg-gray-100 my-card animate-item-in">
       <div className="flex justify-between items-center w-full">
-        <span className="font-semibold text-gray text-md">COMPLETION</span>
+        <span className="font-semibold text-gray text-md">{t("completion")}</span>
         {percentage == 0 && (
           <span className="font-bold text-lg ml-2 text-blue">0%</span>
         )}

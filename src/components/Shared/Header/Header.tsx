@@ -1,5 +1,5 @@
 "use client";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/src/i18n/navigation";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import WaterDrop from "@mui/icons-material/WaterDrop";
@@ -10,32 +10,35 @@ import ModeNight from "@mui/icons-material/ModeNight";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 import { useSettingsStore } from "@/src/hooks/settingsStore";
 import { initialSettings } from "@/src/types/types";
+import { useTranslations } from "next-intl";
+import { LanguageSwitcher } from "../LanguageSwitcher/LanguageSwitcher";
 
 const routes = [
-  { name: "Shopping List", href: "/", icon: <WaterDrop />, link: false },
+  { name: "list", href: "/", icon: <WaterDrop />, link: "" },
   {
-    name: "Recurring Items",
+    name: "recurring",
     href: "/recurring",
     icon: <HistoryToggleOff />,
-    link: false,
+    link: "",
   },
   {
-    name: "Your Cycle Period",
+    name: "cycle",
     href: "/cycle",
     icon: <Autorenew />,
-    link: false,
+    link: "",
   },
   {
-    name: "Confirm New Cycle",
+    name: "newCycle",
     href: "/cycle/start",
     icon: <ArrowBack />,
-    link: true,
+    link: "/cycle",
   },
 ];
 
 export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
+  const t = useTranslations("header");
   const { theme, setTheme } = useTheme();
   const settings = useSettingsStore((state) => state.value);
   const setSettings = useSettingsStore((state) => state.setValue);
@@ -44,8 +47,9 @@ export default function Header() {
     setSettings(initialSettings);
   }
 
-  const route = routes.find((route) => route.href === pathname);
-  const handleClick = route?.link ? () => router.back() : undefined;
+  const items = routes.map((item) => ({ ...item, name: t(item.name) }));
+  const route = items.find((route) => route.href === pathname);
+  const handleClick = route?.link ? () => router.push(route.link) : undefined;
 
   const handleSwitchTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
@@ -71,14 +75,17 @@ export default function Header() {
             {route?.name || "Shopping List"}
           </h1>
         </div>
-        <button
-          onClick={handleSwitchTheme}
-          className="p-2 rounded-full hover:bg-blue/5"
-        >
-          <span className="material-symbols-outlined bg-shared">
-            {settings?.theme === "light" ? <ModeNight /> : <Sunny />}
-          </span>
-        </button>
+        <div className="flex justify-center gap-4">
+          <button
+            onClick={handleSwitchTheme}
+            className="p-2 rounded-full hover:bg-blue/5"
+          >
+            <span className="material-symbols-outlined bg-shared">
+              {settings?.theme === "light" ? <ModeNight /> : <Sunny />}
+            </span>
+          </button>
+          <LanguageSwitcher />
+        </div>
       </div>
     </header>
   );

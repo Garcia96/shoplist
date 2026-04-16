@@ -8,7 +8,7 @@ export default function CyclePage() {
   return (
     <main className="pt-24 px-6 max-w-2xl mx-auto pb-24">
       <CycleCard />
-      <CycleStats title="CYCLE STATS" />
+      <CycleStats title="titleCyclePage" />
       <ActionButtons  />
     </main>
   );

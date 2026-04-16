@@ -10,6 +10,7 @@ import { useToastStore } from "@/src/hooks/toastStore";
 import { useSettingsStore } from "@/src/hooks/settingsStore";
 import { useDialogStore } from "@/src/hooks/dialogStore";
 import ListItem from "./ListItem";
+import { useTranslations } from "next-intl";
 
 export default function List({ isFixed }: { isFixed: boolean }) {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -22,6 +23,7 @@ export default function List({ isFixed }: { isFixed: boolean }) {
   const showToast = useToastStore((s) => s.showToast);
   const settings = useSettingsStore((state) => state.value);
   const showDialog = useDialogStore((state) => state.showDialog);
+  const t = useTranslations('common');
 
   function addItem(name: string) {
     if (settings.firstTime) {
@@ -67,7 +69,7 @@ export default function List({ isFixed }: { isFixed: boolean }) {
               addItem(inputValue);
             }
           }}
-          placeholder="Add item..."
+          placeholder={t("addItem")}
           id="add-list"
           autoComplete="off"
           className="w-full p-4 pr-14 rounded-xl text-lg font-medium shadow-lg/20 border border-gray-300"

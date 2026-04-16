@@ -2,9 +2,21 @@
   "common": {
     "addItem": "Add item...",
     "confirm": "Confirm",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "days": "DAYS"
   },
-  "header": "",
+  "cycles": {
+    "weekly": "Weekly",
+    "biweekly": "Bi-weekly",
+    "monthly": "Monthly",
+    "custom": "Custom"
+  },
+  "header": {
+    "list": "Shopping List",
+    "recurring": "Recurring Items",
+    "cycle": "Your Cycle Period",
+    "newCycle": "Confirm New Cycle"
+  },
   "footer": {
     "list": "List",
     "recurring": "Recurring",
@@ -12,6 +24,32 @@
   },
   "mainPage": {
     "title": "My list",
-    "completion": "COMPLETION"
+    "completion": "COMPLETION",
+    "fixedItem": "FIXED"
+  },
+  "recurringPage": {
+    "title": "Recurring Items",
+    "paragraph": "Items that automatically refresh every cycle period."
+  },
+  "cyclePage": {
+    "cycleCardTitle": "{cycle} Cyle Active",
+    "ends": "Ends on {date, date, shortDayMonth}",
+    "button": "Start New Cycle",
+    "days": "{count, plural, one {DAY LEFT} other {DAYS LEFT}}"
+  },
+  "stats": {
+    "titleCyclePage": "Cycle Stats",
+    "titleConfirmPage": "PREVIOUS CYCLE STATS",
+    "completed": "Completed",
+    "items": "Items Bought"
+  },
+  "newCyclePage": {
+    "subTitle": "NEW CYCLE CONFIRMATION",
+    "title": "Ready for your fresh start?",
+    "duration": "Cycle Duration",
+    "buttomConfirm": "Start New Cycle",
+    "buttomCancel": "Cancel",
+    "customCycleTitle": "Select the number of days for your custom cycle:",
+    "warning": "Starting a new cycle will reset your current progress and automatically refresh your recurring pantry essentials for the upcoming cycle."
   }
 }

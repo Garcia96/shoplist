@@ -10,6 +10,7 @@ import {
 import Info from "@mui/icons-material/Info";
 import { initialCycleDuration } from "@/src/types/types";
 import { useSettingsStore } from "@/src/hooks/settingsStore";
+import { useTranslations } from "next-intl";
 
 export function NewCycle() {
   const router = useRouter();
@@ -24,6 +25,7 @@ export function NewCycle() {
   const showToast = useToastStore((s) => s.showToast);
   const settings = useSettingsStore((state) => state.value);
   const setSettings = useSettingsStore((state) => state.setValue);
+  const t = useTranslations();
 
   const clearFixedItems = () => {
     setItemsFixed((prev) =>
@@ -53,7 +55,7 @@ export function NewCycle() {
 
     if (cycleDuration?.label === "Weekly") {
       endDate.setDate(startDate.getDate() + 6);
-    } else if (cycleDuration?.label === "Bi-weekly") {
+    } else if (cycleDuration?.label === "Biweekly") {
       endDate.setDate(startDate.getDate() + 14);
     } else if (cycleDuration?.label === "Monthly") {
       endDate.setMonth(startDate.getMonth() + 1);
@@ -87,9 +89,7 @@ export function NewCycle() {
           <div className="flex flex-row gap-3">
             <Info className="text-blue" />
             <p className="text-left font-light">
-              Starting a new cycle will reset your current progress and
-              automatically refresh your recurring pantry essentials for the
-              upcoming cycle.
+              {t("newCyclePage.warning")}
             </p>
           </div>
         </section>
@@ -100,13 +100,13 @@ export function NewCycle() {
             onClick={handleConfirm}
             className="w-3xs py-3 rounded-xl bg-blue text-white font-bold text-center"
           >
-            Start New Cycle
+            {t("newCyclePage.buttomConfirm")}
           </button>
           <button
             onClick={() => router.back()}
             className="w-3xs py-2 mt-2 rounded-xl font-bold text-center cancel"
           >
-            Cancel
+            {t("newCyclePage.buttomCancel")}
           </button>
         </div>
       </section>
