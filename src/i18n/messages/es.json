@@ -1,0 +1,60 @@
+{
+  "common": {
+    "addItem": "Agrega un producto...",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "days": "DIAS"
+  },
+  "toast": {
+    "itemAlready": "Este item ya se encuentra en la lista.",
+    "selectCycle": "Selecciona una duración de ciclo por favor!"
+  },
+  "cycles": {
+    "weekly": "Semanal",
+    "biweekly": "Quincenal",
+    "monthly": "Mensual",
+    "custom": "Personalizado"
+  },
+  "header": {
+    "list": "Lista de Compras",
+    "recurring": "Productos Fijos",
+    "cycle": "Tu Ciclo de Compras",
+    "newCycle": "Confirma tu Nuevo Ciclo"
+  },
+  "footer": {
+    "list": "Lista",
+    "recurring": "Fijos",
+    "cycle": "Ciclo"
+  },
+  "mainPage": {
+    "title": "Mi lista",
+    "completion": "PROGRESO",
+    "fixedItem": "FIJO"
+  },
+  "recurringPage": {
+    "title": "Productos Recurrentes",
+    "paragraph": "Productos que automáticamente se renuevan en cada ciclo."
+  },
+  "cyclePage": {
+    "cycleCardTitle": "Ciclo {cycle} Activo",
+    "noActive": "No Hay Ciclo Activo",
+    "ends": "Finaliza el {date, date, shortDayMonth}",
+    "button": "Comienza un Nuevo Ciclo",
+    "days": "{count, plural, one {Dia para Comprar} other {Dias para Comprar}}"
+  },
+  "stats": {
+    "titleCyclePage": "Estadísticas del Ciclo",
+    "titleConfirmPage": "Estadísticas del Ciclo Anterior",
+    "completed": "Completado",
+    "items": "Productos Comprados"
+  },
+  "newCyclePage": {
+    "subTitle": "CONFIRMA EL NUEVO CICLO",
+    "title": "¿Listo para un nuevo comienzo?",
+    "duration": "Duración",
+    "buttomConfirm": "Comienza el Nuevo Ciclo",
+    "buttomCancel": "Cancelar",
+    "customCycleTitle": "Selecciona el número de días para tu ciclo personalizado:",
+    "warning": "Al iniciar un nuevo ciclo, se restablecerá tu progreso actual y se actualizarán automáticamente los productos básicos de tu despensa para el próximo ciclo."
+  }
+}
