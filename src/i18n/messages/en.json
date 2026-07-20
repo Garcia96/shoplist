@@ -1,9 +1,18 @@
 {
   "common": {
+    "item": "item",
     "addItem": "Add item...",
     "confirm": "Confirm",
     "cancel": "Cancel",
-    "days": "DAYS"
+    "edit": "Edit",
+    "delete": "Delete",
+    "pin": "Pin",
+    "unpin": "Unpin",
+    "days": "DAYS",
+    "noCycle": "You haven’t set up a cycle yet. Create one now to get started.",
+    "go": "Go!",
+    "setUpCycle": "Set Up Your Cycle",
+    "deleteConfirmation": "Are you sure you want to delete"
   },
   "toast": {
     "itemAlready": "The item is already on the list",

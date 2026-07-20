@@ -1,9 +1,18 @@
 {
   "common": {
+    "item": "producto",
     "addItem": "Agrega un producto...",
-    "confirm": "Confirm",
-    "cancel": "Cancel",
-    "days": "DIAS"
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "pin": "Fijar",
+    "unpin": "Desfijar",
+    "days": "DIAS",
+    "noCycle": "Aún no has configurado un ciclo. Crea uno ahora para empezar.",
+     "go": "Empezar",
+     "setUpCycle": "Configura tu ciclo",
+     "deleteConfirmation": "Estas seguro que quieres eliminar"
   },
   "toast": {
     "itemAlready": "Este item ya se encuentra en la lista.",

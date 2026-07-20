@@ -5,6 +5,7 @@ import Header from "@/src/components/Shared/Header/Header";
 import { Footer } from "@/src/components/Shared/Footer/Footer";
 import { Toast } from "@/src/components/Shared/Toast/Toast";
 import { Dialog } from "@/src/components/Shared/Dialog/Dialog";
+import { ContextMenu} from "@/src/components/Shared/ContextMenu/ContextMenu"
 import { MyYhemeProvider } from "@/src/components/theme-provider";
 import "./globals.css";
 import { notFound } from "next/navigation";
@@ -47,6 +48,7 @@ export default async function RootLayout({ children, params }: Props) {
             <Footer />
             <Toast />
             <Dialog />
+            <ContextMenu />
           </MyYhemeProvider>
         </NextIntlClientProvider>
       </body>
