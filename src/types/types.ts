@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 export type Item = {
   name: string;
   isFixed: boolean;
@@ -22,7 +20,7 @@ export type Cycle = {
 export type Settings = {
   firstTime: boolean;
   theme: string | undefined;
-}
+};
 
 type Toast = {
   message: string;
@@ -37,21 +35,34 @@ export type ToastStore = {
   hideToast: () => void;
 };
 
-type Dialog = {
-  content?: ReactNode;
-  link?: string;
-  title?: string;
+export type DialogType = "info" | "edit" | "delete" | null;
+
+export type Dialog = {
   visible: boolean;
+  type: DialogType;
+  title?: string;
   confirmText?: string;
-  onConfirm?: () => void | Promise<void>;
-}
+  value?: string;
+  item?: Item;
+  link?: string;
+  onConfirm?: (value?: string) => void | Promise<void>;
+};
 
 export type DialogStore = {
   dialog: Dialog;
 
-  showDialog: (dialog: Partial<Dialog>)=> void;
+  showDialog: (dialog: Partial<Dialog>) => void;
   hideDialog: () => void;
-}
+  setDialogValue: (value: string) => void;
+};
+
+export type ContextMenuStore = {
+  isOpen: boolean;
+  selectedItem: Item | null;
+  coords: { x: number; y: number } | null;
+  showContextMenu: (item: Item, coords: { x: number; y: number }) => void;
+  hideContextMenu: () => void;
+};
 
 type SetValue<T> = (value: T | ((prev: T) => T)) => void;
 
@@ -74,4 +85,5 @@ export const initialSettings: Settings = {
 export const initialDialog: Dialog = {
   visible: false,
   title: "",
-}
+  type: null,
+};

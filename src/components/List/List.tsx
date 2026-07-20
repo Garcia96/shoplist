@@ -28,11 +28,10 @@ export default function List({ isFixed }: { isFixed: boolean }) {
   function addItem(name: string) {
     if (settings.firstTime) {
       showDialog({
-        content: (
-          <p>You haven’t set up a cycle yet. Create one now to get started.</p>
-        ),
+        type: "info",
+        value: t("noCycle"),
         link: "/cycle/start",
-        title: "Set Up Your Cycle",
+        title: t("setUpCycle"),
       });
       return;
     }

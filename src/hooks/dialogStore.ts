@@ -8,7 +8,11 @@ export const useDialogStore = create<DialogStore>((set) => ({
 
   showDialog(dialog) {
     set({
-      dialog: { ...dialog, visible: true },
+      dialog: {
+        ...initialDialog,
+        ...dialog,
+        visible: true,
+      },
     });
   },
 
@@ -16,5 +20,14 @@ export const useDialogStore = create<DialogStore>((set) => ({
     set({
       dialog: initialDialog,
     });
+  },
+
+  setDialogValue(value) {
+    set((state) => ({
+      dialog: {
+        ...state.dialog,
+        value,
+      },
+    }));
   },
 }));

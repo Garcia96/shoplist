@@ -2,9 +2,12 @@
 
 import { Link } from "@/src/i18n/navigation";
 import { useDialogStore } from "@/src/hooks/dialogStore";
+import { DialogContent } from "./DialogContent";
+import { useTranslations } from "next-intl";
 
 export function Dialog() {
   const { dialog, hideDialog } = useDialogStore();
+  const tc = useTranslations("common");
 
   if (!dialog.visible) return null;
 
@@ -12,7 +15,7 @@ export function Dialog() {
     if (!dialog.onConfirm) return hideDialog();
 
     try {
-      await dialog.onConfirm();
+      await dialog.onConfirm(dialog.value);
       hideDialog();
     } catch (error) {
       console.error(error);
@@ -40,7 +43,7 @@ export function Dialog() {
         </div>
 
         <div className="p-5 leading-relaxed">
-          {dialog?.content}
+          {dialog.type && <DialogContent />}
         </div>
 
         {dialog.onConfirm && (
@@ -49,13 +52,13 @@ export function Dialog() {
               onClick={hideDialog}
               className="px-4 py-2 rounded-xl bg-gray-100 text-gray-700 hover:bg-gray-200 transition"
             >
-              Cancel
+              {tc("cancel")}
             </button>
             <button
               onClick={handleConfirm}
               className="px-4 py-2 rounded-xl bg-blue text-white hover:bg-blue-700 transition shadow-sm"
             >
-              {dialog?.confirmText || "Send"}
+              {dialog?.confirmText || tc("confirm")}
             </button>
           </div>
         )}
@@ -66,7 +69,7 @@ export function Dialog() {
               onClick={hideDialog}
               className="px-4 py-2 rounded-xl bg-gray-100 text-gray-700 hover:bg-gray-200 transition"
             >
-              Cancel
+              {tc("cancel")}
             </button>
             <Link
               onClick={hideDialog}
@@ -74,7 +77,7 @@ export function Dialog() {
               href="/cycle/start"
               className="px-4 py-2 rounded-xl bg-blue text-white hover:bg-blue-700 transition shadow-sm"
             >
-              Go!
+              {tc("go")}
             </Link>
           </div>
         ) : null}

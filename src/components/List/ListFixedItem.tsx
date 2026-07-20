@@ -7,22 +7,21 @@ import {
   useItemsStore,
 } from "@/src/hooks/useItemsStore";
 import { useDialogStore } from "@/src/hooks/dialogStore";
+import { useTranslations } from "next-intl";
 
 export default function ListFixedItem(props: Item) {
   const setFixedItems = useItemsFixedStore((state) => state.setValue);
   const setItems = useItemsStore((state) => state.setValue);
   const setAllItems = useAllItemsStore((state) => state.setValue);
   const { showDialog } = useDialogStore();
+  const t = useTranslations("common");
 
   function handleDelete() {
     showDialog({
-      title: "Delete Item",
-      content: (
-        <>
-          <p>Are you sure want to delete this item?</p>
-        </>
-      ),
-      confirmText: "Delete",
+      title: t("delete") + ` ${t("item")}`,
+      type: "info",
+      value: t("deleteConfirmation") + ` "${props.name}"?`,
+      confirmText: t("delete"),
       onConfirm: async () => {
         await deleteItem();
       },
