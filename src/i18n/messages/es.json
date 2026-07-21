@@ -12,7 +12,8 @@
     "noCycle": "Aún no has configurado un ciclo. Crea uno ahora para empezar.",
      "go": "Empezar",
      "setUpCycle": "Configura tu ciclo",
-     "deleteConfirmation": "Estas seguro que quieres eliminar"
+     "deleteConfirmation": "Estas seguro que quieres eliminar",
+     "completed": "Comprados"
   },
   "toast": {
     "itemAlready": "Este item ya se encuentra en la lista.",

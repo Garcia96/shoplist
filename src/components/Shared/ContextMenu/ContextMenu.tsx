@@ -7,7 +7,6 @@ import type { Item } from "@/src/types/types";
 import {
   useAllItemsStore,
   useItemsFixedStore,
-  useItemsStore,
 } from "@/src/hooks/useItemsStore";
 import { useContextMenuStore } from "@/src/hooks/contextMenu";
 import { useTranslations } from "next-intl";
@@ -17,7 +16,6 @@ export function ContextMenu() {
   const menuRef = useRef<HTMLDivElement>(null);
   const { isOpen, hideContextMenu, selectedItem, coords } =
     useContextMenuStore();
-  const setItems = useItemsStore((state) => state.setValue);
   const setAllItems = useAllItemsStore((state) => state.setValue);
   const setFixedItems = useItemsFixedStore((state) => state.setValue);
   const { showDialog } = useDialogStore();
@@ -50,12 +48,6 @@ export function ContextMenu() {
   };
 
   const renameItem = (oldName: string, newName: string) => {
-    setItems((prev) =>
-      prev.map((item) =>
-        item.name === oldName ? { ...item, name: newName } : item,
-      ),
-    );
-
     setAllItems((prev) =>
       prev.map((item) =>
         item.name === oldName ? { ...item, name: newName } : item,
@@ -83,14 +75,6 @@ export function ContextMenu() {
   };
 
   const saveEditedItem = () => {
-    setItems((prev) =>
-      prev.map((item) =>
-        item.name === selectedItem?.name
-          ? { ...item, isFixed: !selectedItem?.isFixed }
-          : item,
-      ),
-    );
-
     setAllItems((prev) =>
       prev.map((item) =>
         item.name === selectedItem?.name
@@ -115,13 +99,15 @@ export function ContextMenu() {
               right: "calc(100vw - " + coords?.x + "px)",
             }}
           >
-            <button
-              onClick={handleEdit}
-              className="flex items-center w-full px-4 py-2 hover:bg-gray-100"
-            >
-              <Edit className="size-5 text-blue" />
-              <span className="ml-2">{tc("edit")}</span>
-            </button>
+            {!selectedItem?.isChecked && (
+              <button
+                onClick={handleEdit}
+                className="flex items-center w-full px-4 py-2 hover:bg-gray-100"
+              >
+                <Edit className="size-5 text-blue" />
+                <span className="ml-2">{tc("edit")}</span>
+              </button>
+            )}
 
             <button
               onClick={handlePin}

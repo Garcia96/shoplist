@@ -3,7 +3,10 @@
 import { useState, useRef } from "react";
 import { usePathname } from "@/src/i18n/navigation";
 import clsx from "clsx";
-import { useAllItemsStore, useItemsStore } from "@/src/hooks/useItemsStore";
+import {
+  useAllItemsStore,
+  useItemsFixedStore,
+} from "@/src/hooks/useItemsStore";
 import type { Item } from "@/src/types/types";
 import { useContextMenuStore } from "@/src/hooks/contextMenu";
 import ListFixedItem from "./ListFixedItem";
@@ -17,12 +20,10 @@ export default function ListItem(props: Item) {
   const t = useTranslations("mainPage");
 
   const [isChecked, setIsChecked] = useState(props.isChecked || false);
-
-  const setItems = useItemsStore((state) => state.setValue);
   const setAllItems = useAllItemsStore((state) => state.setValue);
+  const setFixedItems = useItemsFixedStore((state) => state.setValue);
 
-  const { isOpen, selectedItem, showContextMenu } =
-    useContextMenuStore();
+  const { isOpen, selectedItem, showContextMenu } = useContextMenuStore();
 
   const isSelected = isOpen && selectedItem?.name === props.name;
 
@@ -38,13 +39,9 @@ export default function ListItem(props: Item) {
       prev.map((item) => (item.name === props.name ? updatedItem : item)),
     );
 
-    setItems((prev) =>
+    setFixedItems((prev) =>
       prev.map((item) => (item.name === props.name ? updatedItem : item)),
     );
-
-    if (!props.isFixed) {
-      setItems((prev) => prev.filter((item) => item.name !== props.name));
-    }
   }
 
   function handleLongPress() {
