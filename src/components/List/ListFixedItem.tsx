@@ -27,8 +27,8 @@ export default function ListFixedItem(props: Item) {
   }
 
   const deleteItem = () => {
-    setFixedItems((prev) => prev.filter((item) => item.name !== props.name));
-    setAllItems((prev) => prev.filter((item) => item.name !== props.name));
+    setFixedItems((prev) => prev.filter((item) => item.id !== props.id));
+    setAllItems((prev) => prev.filter((item) => item.id !== props.id));
   };
 
   return (

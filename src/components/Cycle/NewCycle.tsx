@@ -5,7 +5,6 @@ import { useToastStore } from "@/src/hooks/toastStore";
 import {
   useAllItemsStore,
   useItemsFixedStore,
-  useItemsStore,
 } from "@/src/hooks/useItemsStore";
 import Info from "@mui/icons-material/Info";
 import { initialCycleDuration } from "@/src/types/types";
@@ -14,7 +13,6 @@ import { useTranslations } from "next-intl";
 
 export function NewCycle() {
   const router = useRouter();
-  const setItems = useItemsStore((state) => state.setValue);
   const setAllItems = useAllItemsStore((state) => state.setValue);
   const itemsFixed = useItemsFixedStore((state) => state.value);
   const setItemsFixed = useItemsFixedStore((state) => state.setValue);
@@ -35,7 +33,6 @@ export function NewCycle() {
 
   const resetAllItems = () => {
     clearFixedItems();
-    setItems(itemsFixed);
     setAllItems(itemsFixed);
   };
 

@@ -1,4 +1,5 @@
 export type Item = {
+  id: number;
   name: string;
   isFixed: boolean;
   isChecked?: boolean;

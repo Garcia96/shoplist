@@ -8,6 +8,7 @@ import {
   useAllItemsStore,
   useItemsFixedStore,
 } from "@/src/hooks/useItemsStore";
+import { useToastStore } from "@/src/hooks/toastStore";
 import { useContextMenuStore } from "@/src/hooks/contextMenu";
 import { useTranslations } from "next-intl";
 import { useDialogStore } from "@/src/hooks/dialogStore";
@@ -16,8 +17,10 @@ export function ContextMenu() {
   const menuRef = useRef<HTMLDivElement>(null);
   const { isOpen, hideContextMenu, selectedItem, coords } =
     useContextMenuStore();
+  const allItems = useAllItemsStore((state) => state.value);
   const setAllItems = useAllItemsStore((state) => state.setValue);
   const setFixedItems = useItemsFixedStore((state) => state.setValue);
+  const showToast = useToastStore((s) => s.showToast);
   const { showDialog } = useDialogStore();
   const tc = useTranslations("common");
 
@@ -42,21 +45,28 @@ export function ContextMenu() {
       type: "edit",
       value: selectedItem?.name || "",
       onConfirm: async (value) => {
-        await renameItem(selectedItem!.name, value ?? "");
+        await renameItem(selectedItem!, value ?? "");
       },
     });
   };
 
-  const renameItem = (oldName: string, newName: string) => {
+  const renameItem = (selectedItem: Item, newName: string) => {
+    if (
+      allItems.some((item) => item.name.toLowerCase() === newName.toLowerCase())
+    ) {
+      showToast("itemAlready", 3000);
+      return;
+    }
+
     setAllItems((prev) =>
       prev.map((item) =>
-        item.name === oldName ? { ...item, name: newName } : item,
+        item.id === selectedItem.id ? { ...item, name: newName } : item,
       ),
     );
 
     setFixedItems((prev) =>
       prev.map((item) =>
-        item.name === oldName ? { ...item, name: newName } : item,
+        item.id === selectedItem.id ? { ...item, name: newName } : item,
       ),
     );
   };
@@ -64,7 +74,7 @@ export function ContextMenu() {
   const handlePin = () => {
     if (selectedItem?.isFixed) {
       setFixedItems((prev) =>
-        prev.filter((item) => item.name !== selectedItem?.name),
+        prev.filter((item) => item.id !== selectedItem?.id),
       );
     } else {
       const newItem: Item = { ...selectedItem, isFixed: true } as Item;
@@ -77,7 +87,7 @@ export function ContextMenu() {
   const saveEditedItem = () => {
     setAllItems((prev) =>
       prev.map((item) =>
-        item.name === selectedItem?.name
+        item.id === selectedItem?.id
           ? { ...item, isFixed: !selectedItem?.isFixed }
           : item,
       ),

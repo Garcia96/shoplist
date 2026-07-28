@@ -36,15 +36,15 @@ export default function ListItem(props: Item) {
     };
 
     setAllItems((prev) =>
-      prev.map((item) => (item.name === props.name ? updatedItem : item)),
+      prev.map((item) => (item.id === props.id ? updatedItem : item)),
     );
 
     setFixedItems((prev) =>
-      prev.map((item) => (item.name === props.name ? updatedItem : item)),
+      prev.map((item) => (item.id === props.id ? updatedItem : item)),
     );
   }
 
-  function handleLongPress() {
+  function handleContextMenuClick() {
     if (!itemRef.current) return;
     const rect = itemRef.current.getBoundingClientRect();
 
@@ -101,7 +101,7 @@ export default function ListItem(props: Item) {
               </span>
             </div>
           )}
-          <MoreVert onClick={handleLongPress} />
+          <MoreVert onClick={handleContextMenuClick} />
         </div>
       </div>
     </div>

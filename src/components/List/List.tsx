@@ -3,13 +3,14 @@
 import { useState, useRef } from "react";
 import {
   useAllItemsStore,
-  useItemsFixedStore
+  useItemsFixedStore,
 } from "@/src/hooks/useItemsStore";
 import { useToastStore } from "@/src/hooks/toastStore";
 import { useSettingsStore } from "@/src/hooks/settingsStore";
 import { useDialogStore } from "@/src/hooks/dialogStore";
 import ListItem from "./ListItem";
 import { useTranslations } from "next-intl";
+import { Item } from "@/src/types/types";
 
 export default function List({ isFixed }: { isFixed: boolean }) {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -36,15 +37,15 @@ export default function List({ isFixed }: { isFixed: boolean }) {
 
     if (!name.trim()) return;
 
-    const item = allItems.find(
-      (item) => item.name.toLowerCase() === name.toLowerCase(),
-    );
-    if (item) {
+    if (
+      allItems.some((item) => item.name.toLowerCase() === name.toLowerCase())
+    ) {
       showToast("itemAlready", 3000);
       return;
     }
 
-    const newItem = { name, isFixed, isChecked: false };
+    const nextId = Math.max(0, ...allItems.map((i) => i.id)) + 1;
+    const newItem: Item = { id: nextId, name, isFixed, isChecked: false };
     setAllItems((prev) => [...prev, newItem]);
 
     if (isFixed) setFixedItems((prev) => [...prev, newItem]);
@@ -84,7 +85,8 @@ export default function List({ isFixed }: { isFixed: boolean }) {
         {isFixed &&
           fixedItems.map((item) => (
             <ListItem
-              key={item.name}
+              key={item.id}
+              id={item.id}
               name={item.name}
               isFixed={item.isFixed}
               isChecked={item.isChecked}
@@ -98,7 +100,8 @@ export default function List({ isFixed }: { isFixed: boolean }) {
             .filter((item) => !item.isChecked)
             .map((item) => (
               <ListItem
-                key={item.name}
+                key={item.id}
+                id={item.id}
                 name={item.name}
                 isFixed={item.isFixed}
                 isChecked={item.isChecked}
@@ -108,8 +111,7 @@ export default function List({ isFixed }: { isFixed: boolean }) {
         {/* Lista pagina principal Completados */}
         {!isFixed && allItems.some((item) => item.isChecked) && (
           <div className="mt-10">
-            <div className="border border-gray w-full mb-5"></div>
-            <span>{t("completed")}</span>
+            <span className="text-lg">{t("completed")}</span>
           </div>
         )}
         {!isFixed &&
@@ -119,7 +121,8 @@ export default function List({ isFixed }: { isFixed: boolean }) {
             .filter((item) => item.isChecked)
             .map((item) => (
               <ListItem
-                key={item.name}
+                key={item.id}
+                id={item.id}
                 name={item.name}
                 isFixed={item.isFixed}
                 isChecked={item.isChecked}
