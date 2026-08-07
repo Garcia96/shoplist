@@ -12,18 +12,20 @@ import { useContextMenuStore } from "@/src/hooks/contextMenu";
 import ListFixedItem from "./ListFixedItem";
 import { useTranslations } from "next-intl";
 import MoreVert from "@mui/icons-material/MoreVert";
+import { useDialogStore } from "@/src/hooks/dialogStore";
 
 export default function ListItem(props: Item) {
   const itemRef = useRef<HTMLDivElement>(null);
 
   const pathname = usePathname();
-  const t = useTranslations("mainPage");
+  const t = useTranslations("");
 
   const [isChecked, setIsChecked] = useState(props.isChecked || false);
   const setAllItems = useAllItemsStore((state) => state.setValue);
   const setFixedItems = useItemsFixedStore((state) => state.setValue);
 
   const { isOpen, selectedItem, showContextMenu } = useContextMenuStore();
+  const showDialog = useDialogStore((state) => state.showDialog);
 
   const isSelected = isOpen && selectedItem?.name === props.name;
 
@@ -42,6 +44,15 @@ export default function ListItem(props: Item) {
     setFixedItems((prev) =>
       prev.map((item) => (item.id === props.id ? updatedItem : item)),
     );
+
+    if (!isChecked) {
+      showDialog({
+        type: "addHistorical",
+        title: t("historicalPage.dialogTitle"),
+        item: props,
+        confirmText: t("common.save"),
+      });
+    }
   }
 
   function handleContextMenuClick() {
@@ -97,7 +108,7 @@ export default function ListItem(props: Item) {
                 className="font-bold text-xs text-blue select-none"
                 draggable={false}
               >
-                {t("fixedItem")}
+                {t("mainPage.fixedItem")}
               </span>
             </div>
           )}

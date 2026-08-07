@@ -1,19 +1,22 @@
 {
   "common": {
     "item": "producto",
+    "product": "Producto",
     "addItem": "Agrega un producto...",
     "confirm": "Confirmar",
     "cancel": "Cancelar",
+    "save": "Guardar",
     "edit": "Editar",
+    "omit": "Omitir",
     "delete": "Eliminar",
     "pin": "Fijar",
     "unpin": "Desfijar",
     "days": "DIAS",
     "noCycle": "Aún no has configurado un ciclo. Crea uno ahora para empezar.",
-     "go": "Empezar",
-     "setUpCycle": "Configura tu ciclo",
-     "deleteConfirmation": "Estas seguro que quieres eliminar",
-     "completed": "Comprados"
+    "go": "Empezar",
+    "setUpCycle": "Configura tu ciclo",
+    "deleteConfirmation": "Estas seguro que quieres eliminar",
+    "completed": "Comprados"
   },
   "toast": {
     "itemAlready": "Este item ya se encuentra en la lista.",
@@ -29,12 +32,14 @@
     "list": "Lista de Compras",
     "recurring": "Productos Fijos",
     "cycle": "Tu Ciclo de Compras",
-    "newCycle": "Confirma tu Nuevo Ciclo"
+    "newCycle": "Confirma tu Nuevo Ciclo",
+    "historical": "Histórico"
   },
   "footer": {
     "list": "Lista",
     "recurring": "Fijos",
-    "cycle": "Ciclo"
+    "cycle": "Ciclo",
+    "historical": "Histórico"
   },
   "mainPage": {
     "title": "Mi lista",
@@ -66,5 +71,15 @@
     "buttomCancel": "Cancelar",
     "customCycleTitle": "Selecciona el número de días para tu ciclo personalizado:",
     "warning": "Al iniciar un nuevo ciclo, se restablecerá tu progreso actual y se actualizarán automáticamente los productos básicos de tu despensa para el próximo ciclo."
+  },
+  "historicalPage": {
+    "title": "Historial de Precios",
+    "paragraph": "Aquí puedes observar un historial de hasta 5 precios para los productos que has guardado.",
+    "dialogTitle": "¿Quieres agregar un precio para este producto?",
+    "noHistoricalPrices": "No hay precios históricos disponibles.",
+    "Unit": "Unidad",
+    "Lbs": "Libras",
+    "store": "Tienda",
+    "price": "Precio"
   }
 }

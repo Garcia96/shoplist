@@ -8,6 +8,7 @@ import Autorenew from "@mui/icons-material/Autorenew";
 import Sunny from "@mui/icons-material/Sunny";
 import ModeNight from "@mui/icons-material/ModeNight";
 import ArrowBack from "@mui/icons-material/ArrowBack";
+import PriceChange from "@mui/icons-material/PriceChangeOutlined";
 import { useSettingsStore } from "@/src/hooks/settingsStore";
 import { initialSettings } from "@/src/types/types";
 import { useTranslations } from "next-intl";
@@ -32,6 +33,12 @@ const routes = [
     href: "/cycle/start",
     icon: <ArrowBack />,
     link: "/cycle",
+  },
+{
+    name: "historical",
+    href: "/historical-prices",
+    icon: <PriceChange />,
+    link: "",
   },
 ];
 
