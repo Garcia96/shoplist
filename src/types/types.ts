@@ -36,11 +36,9 @@ export type ToastStore = {
   hideToast: () => void;
 };
 
-export type DialogType = "info" | "edit" | "delete" | null;
-
 export type Dialog = {
   visible: boolean;
-  type: DialogType;
+  type: string;
   title?: string;
   confirmText?: string;
   value?: string;
@@ -65,6 +63,22 @@ export type ContextMenuStore = {
   hideContextMenu: () => void;
 };
 
+export type Units = "Lbs" | "Unit";
+
+export type Price = {
+  id: string;
+  value: number;
+  date: Date;
+  store?: string;
+  unit: string;
+}
+
+export type HistoricalPrice = {
+  name: string;
+  item: Item;
+  prices: Price[];
+}
+
 type SetValue<T> = (value: T | ((prev: T) => T)) => void;
 
 export type Store<T> = {
@@ -86,5 +100,5 @@ export const initialSettings: Settings = {
 export const initialDialog: Dialog = {
   visible: false,
   title: "",
-  type: null,
+  type: "",
 };
