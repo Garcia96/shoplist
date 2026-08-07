@@ -1,10 +1,13 @@
 {
   "common": {
     "item": "item",
+    "product": "Product",
     "addItem": "Add item...",
     "confirm": "Confirm",
     "cancel": "Cancel",
+    "save": "Save",
     "edit": "Edit",
+    "omit": "Omit",
     "delete": "Delete",
     "pin": "Pin",
     "unpin": "Unpin",
@@ -12,7 +15,8 @@
     "noCycle": "You haven’t set up a cycle yet. Create one now to get started.",
     "go": "Go!",
     "setUpCycle": "Set Up Your Cycle",
-    "deleteConfirmation": "Are you sure you want to delete"
+    "deleteConfirmation": "Are you sure you want to delete",
+    "completed": "Completed"
   },
   "toast": {
     "itemAlready": "The item is already on the list",
@@ -28,12 +32,14 @@
     "list": "Shopping List",
     "recurring": "Recurring Items",
     "cycle": "Your Cycle Period",
-    "newCycle": "Confirm New Cycle"
+    "newCycle": "Confirm New Cycle",
+    "historical": "Historical"
   },
   "footer": {
     "list": "List",
     "recurring": "Recurring",
-    "cycle": "Cycle"
+    "cycle": "Cycle",
+    "historical": "Historical"
   },
   "mainPage": {
     "title": "My list",
@@ -65,5 +71,15 @@
     "buttomCancel": "Cancel",
     "customCycleTitle": "Select the number of days for your custom cycle:",
     "warning": "Starting a new cycle will reset your current progress and automatically refresh your recurring pantry essentials for the upcoming cycle."
+  },
+  "historicalPage": {
+    "title": "Price History",
+    "paragraph": "Here you can view a history of up to 5 prices for the products you have saved.",
+    "dialogTitle": "Do you want to add a price for this product?",
+    "noHistoricalPrices": "No historical prices available.",
+    "Unit": "Unit",
+    "Lbs": "Lbs",
+    "store": "Store",
+    "price": "Price"
   }
 }

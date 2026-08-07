@@ -2,6 +2,7 @@
 
 import { useDialogStore } from "@/src/hooks/dialogStore";
 import { useTranslations } from "next-intl";
+import { AddHistoricalDialog } from "./AddHistoricalDialog";
 
 export function DialogContent() {
   const tc = useTranslations("common");
@@ -29,6 +30,10 @@ export function DialogContent() {
         <p>{dialog.value}</p>
       </div>
     );
+  }
+
+  if (dialog.type == "addHistorical") {
+    return <AddHistoricalDialog />;
   }
 
   return null;

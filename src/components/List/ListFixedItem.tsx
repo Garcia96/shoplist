@@ -4,14 +4,12 @@ import type { Item } from "@/src/types/types";
 import {
   useAllItemsStore,
   useItemsFixedStore,
-  useItemsStore,
 } from "@/src/hooks/useItemsStore";
 import { useDialogStore } from "@/src/hooks/dialogStore";
 import { useTranslations } from "next-intl";
 
 export default function ListFixedItem(props: Item) {
   const setFixedItems = useItemsFixedStore((state) => state.setValue);
-  const setItems = useItemsStore((state) => state.setValue);
   const setAllItems = useAllItemsStore((state) => state.setValue);
   const { showDialog } = useDialogStore();
   const t = useTranslations("common");
@@ -29,9 +27,8 @@ export default function ListFixedItem(props: Item) {
   }
 
   const deleteItem = () => {
-    setFixedItems((prev) => prev.filter((item) => item.name !== props.name));
-    setItems((prev) => prev.filter((item) => item.name !== props.name));
-    setAllItems((prev) => prev.filter((item) => item.name !== props.name));
+    setFixedItems((prev) => prev.filter((item) => item.id !== props.id));
+    setAllItems((prev) => prev.filter((item) => item.id !== props.id));
   };
 
   return (
