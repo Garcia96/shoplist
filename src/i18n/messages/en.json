@@ -76,6 +76,7 @@
     "title": "Price History",
     "paragraph": "Here you can view a history of up to 5 prices for the products you have saved.",
     "dialogTitle": "Do you want to add a price for this product?",
+    "dialogDeleteTitle": "Are you sure you want to delete this price?",
     "noHistoricalPrices": "No historical prices available.",
     "Unit": "Unit",
     "Lbs": "Lbs",

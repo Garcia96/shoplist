@@ -76,6 +76,7 @@
     "title": "Historial de Precios",
     "paragraph": "Aquí puedes observar un historial de hasta 5 precios para los productos que has guardado.",
     "dialogTitle": "¿Quieres agregar un precio para este producto?",
+    "dialogDeleteTitle": "¿Estás seguro de que quieres eliminar este precio?",
     "noHistoricalPrices": "No hay precios históricos disponibles.",
     "Unit": "Unidad",
     "Lbs": "Libras",
