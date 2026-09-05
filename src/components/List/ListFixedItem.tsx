@@ -37,7 +37,7 @@ export default function ListFixedItem(props: Item) {
         <span className="text-lg font-medium">{props.name}</span>
       </div>
 
-      <div onClick={handleDelete} className="text-amber">
+      <div onClick={handleDelete}>
         <Delete />
       </div>
     </div>

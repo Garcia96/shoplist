@@ -12,6 +12,7 @@ import { useToastStore } from "@/src/hooks/toastStore";
 import { useContextMenuStore } from "@/src/hooks/contextMenu";
 import { useTranslations } from "next-intl";
 import { useDialogStore } from "@/src/hooks/dialogStore";
+import { useHistoricalPriceStore } from "@/src/hooks/historicalPriceStore";
 
 export function ContextMenu() {
   const menuRef = useRef<HTMLDivElement>(null);
@@ -22,6 +23,9 @@ export function ContextMenu() {
   const setFixedItems = useItemsFixedStore((state) => state.setValue);
   const showToast = useToastStore((s) => s.showToast);
   const { showDialog } = useDialogStore();
+  const setHistoricalPrices = useHistoricalPriceStore(
+      (state) => state.setValue,
+    );
   const tc = useTranslations("common");
 
   useEffect(() => {
@@ -69,6 +73,16 @@ export function ContextMenu() {
         item.id === selectedItem.id ? { ...item, name: newName } : item,
       ),
     );
+
+    setHistoricalPrices((prices) =>
+      prices.map((price) =>
+        price.item.id === selectedItem.id
+          ? { ...price, name: newName, item: { ...price.item, name: newName } }
+          : price,
+      ),
+    );
+        
+    showToast("itemRenamed", 3000);
   };
 
   const handlePin = () => {

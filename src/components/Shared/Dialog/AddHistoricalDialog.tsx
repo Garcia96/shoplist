@@ -45,7 +45,7 @@ export function AddHistoricalDialog() {
   };
 
   const handleAddHistoricalPrice = () => {
-    const hp = historicalPrices.find((item) => item.name === dialog.item?.name);
+    const hp = historicalPrices.find((prev) => prev.item.id === dialog.item?.id);
     if (hp) {
       addPrice(dialog.item!, {
         id: crypto.randomUUID(),
