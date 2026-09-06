@@ -6,8 +6,6 @@ import {
   useItemsFixedStore,
 } from "@/src/hooks/useItemsStore";
 import { useToastStore } from "@/src/hooks/toastStore";
-import { useSettingsStore } from "@/src/hooks/settingsStore";
-import { useDialogStore } from "@/src/hooks/dialogStore";
 import ListItem from "./ListItem";
 import { useTranslations } from "next-intl";
 import { Item } from "@/src/types/types";
@@ -20,20 +18,10 @@ export default function List({ isFixed }: { isFixed: boolean }) {
   const setFixedItems = useItemsFixedStore((state) => state.setValue);
   const fixedItems = useItemsFixedStore((state) => state.value);
   const showToast = useToastStore((s) => s.showToast);
-  const settings = useSettingsStore((state) => state.value);
-  const showDialog = useDialogStore((state) => state.showDialog);
   const t = useTranslations("common");
 
   function addItem(name: string) {
-    if (settings.firstTime) {
-      showDialog({
-        type: "info",
-        value: t("noCycle"),
-        link: "/cycle/start",
-        title: t("setUpCycle"),
-      });
-      return;
-    }
+
 
     if (!name.trim()) return;
 

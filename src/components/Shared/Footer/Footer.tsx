@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "@/src/i18n/navigation";
-import Autorenew from "@mui/icons-material/Autorenew";
+import Settings from "@mui/icons-material/Settings";
 import ShoppingBasket from "@mui/icons-material/ShoppingBasket";
 import HistoryToggleOff from "@mui/icons-material/HistoryToggleOff";
 import ReceiptLong from "@mui/icons-material/ReceiptLongOutlined";
@@ -19,7 +19,7 @@ const navItems: NavItem[] = [
   { href: "/", label: "list", icon: ShoppingBasket },
   { href: "/recurring", label: "recurring", icon: HistoryToggleOff },
   { href: "/historical-prices", label: "historical", icon: ReceiptLong},
-  { href: "/cycle", label: "cycle", icon: Autorenew },
+  { href: "/settings", label: "settings", icon: Settings },
 ];
 
 export function Footer() {
