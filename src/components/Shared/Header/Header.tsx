@@ -4,10 +4,10 @@ import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import WaterDrop from "@mui/icons-material/WaterDrop";
 import HistoryToggleOff from "@mui/icons-material/HistoryToggleOff";
-import Autorenew from "@mui/icons-material/Autorenew";
+import Settings from "@mui/icons-material/Settings";
+import ArrowBack from "@mui/icons-material/ArrowBack";
 import Sunny from "@mui/icons-material/Sunny";
 import ModeNight from "@mui/icons-material/ModeNight";
-import ArrowBack from "@mui/icons-material/ArrowBack";
 import PriceChange from "@mui/icons-material/PriceChangeOutlined";
 import { useSettingsStore } from "@/src/hooks/settingsStore";
 import { initialSettings } from "@/src/types/types";
@@ -23,18 +23,18 @@ const routes = [
     link: "",
   },
   {
-    name: "cycle",
-    href: "/cycle",
-    icon: <Autorenew />,
+    name: "settings",
+    href: "/settings",
+    icon: <Settings />,
     link: "",
   },
   {
-    name: "newCycle",
-    href: "/cycle/start",
+    name: "shops",
+    href: "/settings/shops",
     icon: <ArrowBack />,
-    link: "/cycle",
+    link: "/settings",
   },
-{
+  {
     name: "historical",
     href: "/historical-prices",
     icon: <PriceChange />,

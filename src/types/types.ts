@@ -5,19 +5,6 @@ export type Item = {
   isChecked?: boolean;
 };
 
-export type CycleDuration = {
-  label: string;
-  desc: string;
-  amount: number;
-};
-
-export type Cycle = {
-  duration: CycleDuration;
-  startDate: Date; // JavaScript Date object
-  endDate: Date; // JavaScript Date object
-  checked: boolean;
-};
-
 export type Settings = {
   firstTime: boolean;
   theme: string | undefined;
@@ -63,6 +50,11 @@ export type ContextMenuStore = {
   hideContextMenu: () => void;
 };
 
+export type Shops = {
+  id: string;
+  name: string;
+};
+
 export type Units = "Lbs" | "Unit";
 
 export type Price = {
@@ -84,12 +76,6 @@ type SetValue<T> = (value: T | ((prev: T) => T)) => void;
 export type Store<T> = {
   value: T;
   setValue: SetValue<T>;
-};
-
-export const initialCycleDuration: CycleDuration = {
-  desc: "",
-  amount: 1,
-  label: "",
 };
 
 export const initialSettings: Settings = {
