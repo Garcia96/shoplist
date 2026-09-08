@@ -9,6 +9,9 @@ export default function HistoricalPricesPage() {
       <h2 className="text-3xl font-extrabold">{t("title")}</h2>
       <p className="mb-6">{t("paragraph")}</p>
       <Historical />
+      <p className="text-sm text-center text-gray-500 mt-4 px-10">
+        {t("disclaimer")}
+      </p>
     </main>
   );
 }

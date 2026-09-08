@@ -44,10 +44,23 @@ export type DialogStore = {
 
 export type ContextMenuStore = {
   isOpen: boolean;
-  selectedItem: Item | null;
-  coords: { x: number; y: number } | null;
-  showContextMenu: (item: Item, coords: { x: number; y: number }) => void;
+  selectedId:string | number | null;
+  selectedElement: HTMLElement | null;
+  options: ContextMenuOption[];
+  showContextMenu: (selectedId: string | number | null, selectedElement: HTMLElement | null, options: ContextMenuOption[]) => void;
   hideContextMenu: () => void;
+};
+
+export type ContextMenuOption = {
+  label: string;
+  icon?: React.ReactNode;
+  onClick: () => void | Promise<void>;
+  disabled?: boolean;
+  hidden?: boolean;
+};
+
+export type ContextMenuProps = {
+  options: ContextMenuOption[];
 };
 
 export type Shops = {

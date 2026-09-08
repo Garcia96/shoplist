@@ -12,7 +12,11 @@ import { useContextMenuStore } from "@/src/hooks/contextMenu";
 import ListFixedItem from "./ListFixedItem";
 import { useTranslations } from "next-intl";
 import MoreVert from "@mui/icons-material/MoreVert";
+import Edit from "@mui/icons-material/Edit";
+import PushPin from "@mui/icons-material/PushPin";
 import { useDialogStore } from "@/src/hooks/dialogStore";
+import { useToastStore } from "@/src/hooks/toastStore";
+import { useHistoricalPriceStore } from "@/src/hooks/historicalPriceStore";
 
 export default function ListItem(props: Item) {
   const itemRef = useRef<HTMLDivElement>(null);
@@ -22,12 +26,17 @@ export default function ListItem(props: Item) {
 
   const [isChecked, setIsChecked] = useState(props.isChecked || false);
   const setAllItems = useAllItemsStore((state) => state.setValue);
+  const allItems = useAllItemsStore((state) => state.value);
   const setFixedItems = useItemsFixedStore((state) => state.setValue);
+  const setHistoricalPrices = useHistoricalPriceStore(
+    (state) => state.setValue,
+  );
 
-  const { isOpen, selectedItem, showContextMenu } = useContextMenuStore();
+  const { isOpen, selectedId, showContextMenu } = useContextMenuStore();
   const showDialog = useDialogStore((state) => state.showDialog);
+  const showToast = useToastStore((state) => state.showToast);
 
-  const isSelected = isOpen && selectedItem?.name === props.name;
+  const isSelected = isOpen && selectedId === props.id;
 
   function handleClick() {
     setIsChecked((prev) => !prev);
@@ -57,14 +66,88 @@ export default function ListItem(props: Item) {
 
   function handleContextMenuClick() {
     if (!itemRef.current) return;
-    const rect = itemRef.current.getBoundingClientRect();
 
-    showContextMenu(props, { x: rect.right, y: rect.top });
+    showContextMenu(props.id, itemRef.current, [
+      {
+        label: t("common.edit"),
+        icon: <Edit />,
+        hidden: false,
+        onClick: () => handleEdit(),
+      },
+      {
+        label: props.isFixed ? t("common.unpin") : t("common.pin"),
+        icon: <PushPin />,
+        hidden: false,
+        onClick: () => handlePin(),
+      },
+    ]);
   }
 
   if (pathname === "/recurring") {
     return <ListFixedItem {...props} />;
   }
+
+  const handleEdit = () => {
+    showDialog({
+      title: t("common.edit") + " Item",
+      confirmText: t("common.confirm"),
+      type: "edit",
+      value: props?.name || "",
+      onConfirm: async (value) => {
+        await renameItem(props!, value ?? "");
+      },
+    });
+  };
+
+  const renameItem = (selectedItem: Item, newName: string) => {
+    if (
+      allItems.some((item) => item.name.toLowerCase() === newName.toLowerCase())
+    ) {
+      showToast("itemAlready", 3000);
+      return;
+    }
+
+    setAllItems((prev) =>
+      prev.map((item) =>
+        item.id === selectedItem.id ? { ...item, name: newName } : item,
+      ),
+    );
+
+    setFixedItems((prev) =>
+      prev.map((item) =>
+        item.id === selectedItem.id ? { ...item, name: newName } : item,
+      ),
+    );
+
+    setHistoricalPrices((prices) =>
+      prices.map((price) =>
+        price.item.id === selectedItem.id
+          ? { ...price, name: newName, item: { ...price.item, name: newName } }
+          : price,
+      ),
+    );
+
+    showToast("itemRenamed", 3000);
+  };
+
+  const handlePin = () => {
+    if (props?.isFixed) {
+      setFixedItems((prev) => prev.filter((item) => item.id !== props?.id));
+    } else {
+      const newItem: Item = { ...props, isFixed: true } as Item;
+      setFixedItems((prev) => [...prev, newItem]);
+    }
+
+    saveEditedItem();
+  };
+
+  const saveEditedItem = () => {
+    setAllItems((prev) =>
+      prev.map((item) =>
+        item.id === props?.id ? { ...item, isFixed: !props?.isFixed } : item,
+      ),
+    );
+  };
 
   return (
     <div className={clsx("relative", isSelected && "z-50")}>
