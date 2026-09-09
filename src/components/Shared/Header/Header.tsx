@@ -68,7 +68,7 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 w-full z-50 backdrop-blur-xl shadow-sm bg-shared">
+    <header className="fixed top-0 w-full z-60 backdrop-blur-xl shadow-sm bg-shared">
       <div className="flex items-center justify-between px-6 h-16">
         <div className="flex items-center gap-3">
           <span

@@ -32,8 +32,8 @@ export function DialogContent() {
     );
   }
 
-  if (dialog.type == "addHistorical") {
-    return <AddHistoricalDialog />;
+  if (dialog.type == "addHistorical" || dialog.type == "addNewHistorical") {
+    return <AddHistoricalDialog type={dialog.type} />;
   }
 
   return null;
